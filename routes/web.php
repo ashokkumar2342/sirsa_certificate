@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
  
 Route::get('/', function () {
-    return view('admin.ffff');
+    return view('admin.register2');
  
 });
 Route::get('register', function () {
