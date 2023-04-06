@@ -62,10 +62,10 @@ Route::post('download', function (Request $request) {
 });
 Route::post('register2', function (Request $request) {
     $User=new User(); 
-    $User->name=$request->name;
+    $User->name=ucwords($request->name);
     $User->mobile_no=$request->mobile_no;
     $User->age=$request->age;
-    $User->address=$request->address;
+    $User->address=ucwords($request->address);
     $User->date=date('Y-m-d');
     $User->save();
     $new_id=$User->id;
