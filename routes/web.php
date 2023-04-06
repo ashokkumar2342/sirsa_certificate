@@ -63,6 +63,9 @@ Route::post('download', function (Request $request) {
 Route::post('register2', function (Request $request) {
     $User=new User(); 
     $User->name=$request->name;
+    $User->mobile_no=$request->mobile_no;
+    $User->age=$request->age;
+    $User->address=$request->address;
     $User->date=date('Y-m-d');
     $User->save();
     $new_id=$User->id;
@@ -87,10 +90,9 @@ Route::post('register2', function (Request $request) {
         'nbpgPrefix' => ' कुल ',
         'nbpgSuffix' => ' पृष्ठों का पृष्ठ'
     ]);
+    $proses_by = $request->proses_by;
     $rs_user=User::find($new_id);
-    $bg_files_path  =\Storage_path('app/backgroud/');
-    $bg_file_front = $bg_files_path."PLEDGE-1.jpg";
-    $html = view('admin.pdf_page',compact('bg_file_front','rs_user')); 
+    $html = view('admin.pdf_page',compact('rs_user', 'proses_by')); 
     $mpdf->WriteHTML($html); 
     $documentUrl = Storage_path() . '/app/download/';  
     @mkdir($documentUrl, 0755, true);  
